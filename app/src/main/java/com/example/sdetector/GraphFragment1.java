@@ -74,7 +74,7 @@ public class GraphFragment1 extends Fragment {
 //                }
 
                 // 앱 이름(TIME_NAME), 시간(TIME_DATA) 불러오기
-                APPS = get_apps_name();
+                APPS = getAppsName();
                 int index1 = 3, index2 = 3;
                 for (int i = 0; i < APPS.length; i++) {
                     if (i % 2 == 0) TIME_NAME[index1--] = APPS[i];
@@ -194,7 +194,7 @@ public class GraphFragment1 extends Fragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private String[] get_apps_name() {
+    private String[] getAppsName() {
         if (!checkPermission())
             startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
         String[] ret = new String[8];
@@ -205,7 +205,7 @@ public class GraphFragment1 extends Fragment {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, -7);
         long cur_time = System.currentTimeMillis(), begin_time = cal.getTimeInMillis();
-        List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, begin_time, cur_time);
+        List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, begin_time, cur_time);
         if (stats != null) {
             ArrayList<Pair> list = new ArrayList<>();
 
